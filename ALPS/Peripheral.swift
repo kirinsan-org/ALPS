@@ -104,14 +104,14 @@ extension Peripheral: CBPeripheralDelegate {
 
                 let parameters: [SensorParameter] = [
                     .acceleration(
-                        x: Float(packet.acceleration.x),
-                        y: Float(packet.acceleration.y),
-                        z: Float(packet.acceleration.z)
+                        x: packet.acceleration.x,
+                        y: packet.acceleration.y,
+                        z: packet.acceleration.z
                     ),
                     .magneticField(
-                        x: Float(packet.magneticField.x),
-                        y: Float(packet.magneticField.y),
-                        z: Float(packet.magneticField.z)
+                        x: packet.magneticField.x,
+                        y: packet.magneticField.y,
+                        z: packet.magneticField.z
                     )
                 ]
 

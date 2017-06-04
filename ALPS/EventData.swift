@@ -13,31 +13,51 @@ protocol BytesConvertible {
 }
 
 struct MagneticField: BytesConvertible {
-    var x: Int16
-    var y: Int16
-    var z: Int16
+    var x: Float {
+        return Float(rawX) * 0.15
+    }
+    var y: Float {
+        return Float(rawY) * 0.15
+    }
+    var z: Float {
+        return Float(rawZ) * 0.15
+    }
+
+    var rawX: Int16
+    var rawY: Int16
+    var rawZ: Int16
 
     init(bytes: [UInt8]) {
-        x = UnsafePointer(Array(bytes[0...1]))
+        rawX = UnsafePointer(Array(bytes[0...1]))
             .withMemoryRebound(to: Int16.self, capacity: 1) { $0.pointee }
-        y = UnsafePointer(Array(bytes[2...3]))
+        rawY = UnsafePointer(Array(bytes[2...3]))
             .withMemoryRebound(to: Int16.self, capacity: 1) { $0.pointee }
-        z = UnsafePointer(Array(bytes[4...5]))
+        rawZ = UnsafePointer(Array(bytes[4...5]))
             .withMemoryRebound(to: Int16.self, capacity: 1) { $0.pointee }
     }
 }
 
 struct Acceleration: BytesConvertible {
-    var x: Int16
-    var y: Int16
-    var z: Int16
+    var x: Float {
+        return Float(rawX) / 1024
+    }
+    var y: Float {
+        return Float(rawY) / 1024
+    }
+    var z: Float {
+        return Float(rawZ) / 1024
+    }
+
+    var rawX: Int16
+    var rawY: Int16
+    var rawZ: Int16
 
     init(bytes: [UInt8]) {
-        x = UnsafePointer(Array(bytes[0...1]))
+        rawX = UnsafePointer(Array(bytes[0...1]))
             .withMemoryRebound(to: Int16.self, capacity: 1) { $0.pointee }
-        y = UnsafePointer(Array(bytes[2...3]))
+        rawY = UnsafePointer(Array(bytes[2...3]))
             .withMemoryRebound(to: Int16.self, capacity: 1) { $0.pointee }
-        z = UnsafePointer(Array(bytes[4...5]))
+        rawZ = UnsafePointer(Array(bytes[4...5]))
             .withMemoryRebound(to: Int16.self, capacity: 1) { $0.pointee }
     }
 }
