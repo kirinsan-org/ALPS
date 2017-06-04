@@ -17,6 +17,10 @@ public final class Peripheral: NSObject {
         return cbPeripheral.identifier
     }
 
+    public var name: String? {
+        return cbPeripheral.name
+    }
+
     public internal(set) var rssi: Int
 
     public weak var delegate: PeripheralDelegate?
